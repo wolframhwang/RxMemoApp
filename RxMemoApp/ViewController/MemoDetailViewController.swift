@@ -15,6 +15,7 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
 
         // Do any additional setup after loading the view.
     }
+    
     func bindViewModel() {
         <#code#>
     }
