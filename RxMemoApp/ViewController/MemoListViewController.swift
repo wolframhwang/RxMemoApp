@@ -8,7 +8,7 @@
 import UIKit
 
 class MemoListViewController: UIViewController, ViewModelBindableType {
-    var ViewModelType : MemoListViewModel!
+    var viewModel : MemoListViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
