@@ -7,14 +7,17 @@
 
 import UIKit
 
-class MemoDetailViewController: UIViewController {
-
+class MemoDetailViewController: UIViewController, ViewModelBindableType {
+    var ViewModel : MemoDetailViewModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+    func bindViewModel() {
+        <#code#>
+    }
 
     /*
     // MARK: - Navigation

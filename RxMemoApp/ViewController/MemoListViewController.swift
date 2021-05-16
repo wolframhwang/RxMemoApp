@@ -7,14 +7,19 @@
 
 import UIKit
 
-class MemoListViewController: UIViewController {
+class MemoListViewController: UIViewController, ViewModelBindableType {
+    var ViewModelType = MemoListViewModel!
+    
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+    func bindViewModel() {
+        <#code#>
+    }
 
     /*
     // MARK: - Navigation
@@ -27,3 +32,4 @@ class MemoListViewController: UIViewController {
     */
 
 }
+
