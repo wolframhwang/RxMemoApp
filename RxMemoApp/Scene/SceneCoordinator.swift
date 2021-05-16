@@ -50,7 +50,7 @@ class SceneCoordinator: SceneCoordinatorType {
         return subject.ignoreElements().asCompletable()
     }
     
-    @discardableResultasCompletable
+    @discardableResult
     func close(animated: Bool) -> Completable {
         return Completable.create { [unowned self] completable in
             if let presentingVC = self.currentVC.presentingViewController {
