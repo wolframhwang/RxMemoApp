@@ -13,17 +13,14 @@ import NSObject_Rx
 
 class MemoComposeViewController: UIViewController,ViewModelBindableType {
     var viewModel: MemoComposeViewModel!
-    
-    
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
+
+    @IBOutlet weak var contentTextView: UITextView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    
-    @IBOutlet weak var contextView: UITextView!
-    
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print("FUCKKKK")
         // Do any additional setup after loading the view.
     }
     
@@ -34,13 +31,14 @@ class MemoComposeViewController: UIViewController,ViewModelBindableType {
             .disposed(by: rx.disposeBag)
         
         viewModel.initialText
-            .drive(contextView.rx.text)
+            .drive(contentTextView.rx.text)
             .disposed(by: rx.disposeBag)
         
         cancelButton.rx.action = viewModel.cancelAction//action 은 action에 바인딩하면됌!
+        
         //Tap 하고! double탭 막을려고 쓰로틀링해야해
         saveButton.rx.tap.throttle(.milliseconds(500), scheduler: MainScheduler.instance)
-            .withLatestFrom(contextView.rx.text.orEmpty)
+            .withLatestFrom(contentTextView.rx.text.orEmpty)
             .bind(to: viewModel.saveAction.inputs)
             .disposed(by: rx.disposeBag)
         
@@ -49,15 +47,14 @@ class MemoComposeViewController: UIViewController,ViewModelBindableType {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        contextView.becomeFirstResponder()
+        contentTextView.becomeFirstResponder()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        if contextView.isFirstResponder {
-            contextView.resignFirstResponder()
+        if contentTextView.isFirstResponder {
+            contentTextView.resignFirstResponder()
         }
     }
     /*

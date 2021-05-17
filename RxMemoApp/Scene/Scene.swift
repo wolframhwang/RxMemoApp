@@ -37,7 +37,7 @@ extension Scene {//스토리 보드에있는 씬을 생성하고 연관값에 �
             detailVC.bind(viewModel: viewModel)
             return detailVC
         case .compose(let viewModel) :
-            guard let nav = storyboard.instantiateViewController(withIdentifier: "ComposeNav") as? UINavigationController else{
+            guard let nav = storyboard.instantiateViewController(withIdentifier: "ComposeNav") as? UINavigationController else {
                 fatalError()
             }
             
@@ -46,7 +46,7 @@ extension Scene {//스토리 보드에있는 씬을 생성하고 연관값에 �
             }
             
             composeVC.bind(viewModel: viewModel)
-            return composeVC
+            return nav
         }
     }
 }
