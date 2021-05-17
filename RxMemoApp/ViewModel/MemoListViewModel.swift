@@ -39,4 +39,18 @@ class MemoListViewModel : CommonViewModel{
             }            
         }
     }
+    
+    lazy var detailAction: Action<Memo, Void> = {//액션 입력형식 메모, 출력은 VOid!
+       //Closure 내부에 self로 접근해야 해서 Lazy로 선언함
+        return Action { memo in
+            let detailViewModel = MemoDetailViewModel(memo: memo, title: "메모 보기" , sceneCoordinator: self.sceneCoordinator, storage: self.storage)
+            let detailScene = Scene.detail(detailViewModel)
+            
+            return self.sceneCoordinator.transition(to: detailScene, using: .push, animated: true)
+                .asObservable().map { _ in }
+            
+        }
+    }()
+    
+    
 }
