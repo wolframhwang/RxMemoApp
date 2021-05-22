@@ -48,6 +48,8 @@ class MemoDetailViewController: UIViewController, ViewModelBindableType {
         
         //Table View와 Content를 반영하고있음..?
         editbutton.rx.action = viewModel.makeEditAction()
+        deletButton.rx.action = viewModel.makeDeleteAction()
+        
         
         shareButton.rx.tap
             .throttle(.milliseconds(500), scheduler: MainScheduler.instance)

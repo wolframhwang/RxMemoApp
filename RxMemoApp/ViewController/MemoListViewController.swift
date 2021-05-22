@@ -29,12 +29,9 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
             .disposed(by: rx.disposeBag)
         
         viewModel.memoList
-            .bind(to: listTableView.rx.items(cellIdentifier: "cell")) {
-                row, memo, cell in
-                cell.textLabel?.text = memo.content
-                
-            }
+            .bind(to: listTableView.rx.items(dataSource: viewModel.dataSource))
             .disposed(by: rx.disposeBag)
+        
         
         addButton.rx.action = viewModel.makeCreateAction()
         
@@ -46,7 +43,9 @@ class MemoListViewController: UIViewController, ViewModelBindableType {
             .bind(to: viewModel.detailAction.inputs)
             .disposed(by: rx.disposeBag)
         
-        
+        listTableView.rx.modelDeleted(Memo.self)//컨트롤 이벤트 리턴함..
+            .bind(to: viewModel.deleteAction.inputs)
+            .disposed(by: rx.disposeBag)//삭제와 관련된 것 바인딩하면 스와이프 가 자동으로활성화댄당
     }
 
     /*
