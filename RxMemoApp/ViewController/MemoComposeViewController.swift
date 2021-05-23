@@ -55,6 +55,7 @@ class MemoComposeViewController: UIViewController,ViewModelBindableType {
             .toContentInset(of: contentTextView)
             .bind(to: contentTextView.rx.contentInset)
             .disposed(by: rx.disposeBag)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
